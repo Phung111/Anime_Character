@@ -4,10 +4,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="staff.css">
+    <title>Anime Character</title>
+    <link rel="stylesheet" href="character.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
 </head>
 <body>
-    <script src="staff.js"></script>
+    <div class="container">
+        <div class="create-character">
+            <div class="character-info">
+                <div class="form-group">
+                    <label for="avatar">Avatar</label>
+                    <input type="text" id="avatar" class="form-control" onchange="changeAvatar()">
+                </div>
+                <div class="form-group">
+                    <label for="fullname">Fullname</label>
+                    <input type="text" id="fullname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" class="form-control">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of birth</label>
+                    <input type="date" id="dob" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="anime">Anime</label>
+                    <input type="text" id="anime" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="costume-price">Costume Price</label>
+                    <input type="number" id="costume-price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input type="button" class="btn btn-success" Value="Create" onclick="createCharacter()">
+                </div>
+            </div>
+            <div class="character-avatar">
+                <img id="reviewAvatar" src="image/noavatar.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="display-character">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th></th>
+                        <th>Full Name</th>
+                        <th>Gender</th>
+                        <th>Date of birth</th>
+                        <th>Anime</th>
+                        <th>Costume Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="character.js"></script>
 </body>
 </html>
