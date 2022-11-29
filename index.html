@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Character</title>
+    <title>Costume Price</title>
     <link rel="stylesheet" href="character.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="image/rem.png" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
+    <!-- Phần header -->
+    <!-- <div id="header">
+        <ul id="nav">
+            <li><a href=""><i class="fa-solid fa-house"></i>  Home</a></li>
+            <li><a href="">Cosplayer</a></li>
+            <li><a href="">Store</a></li>
+            <li><a href="">Top Costume</a></li>
+            <li><a href="">Festival</a></li>
+            <li>
+                <a href="">More</a>
+                <ul class="subnav">
+                    <li><a href="">Present</a></li>
+                    <li><a href="">Music</a></li>
+                    <li><a href="">Figure</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div> -->
+    
+    <!-- Phần tạo form create và table -->
+    <div class="container"></div>
         <div class="create-character">
             <div class="character-info">
                 <div class="form-group">
                     <label for="avatar">Avatar</label>
-                    <input type="text" id="avatar" class="form-control" onchange="changeAvatar()">
+                    <input type="text" id="avatar" class="form-control" onkeyup="changeAvatar()">
                 </div>
                 <div class="form-group">
                     <label for="fullname">Fullname</label>
@@ -44,7 +64,7 @@
                 </div>
             </div>
             <div class="character-avatar">
-                <img id="reviewAvatar" src="image/noavatar.jpg" alt="">
+                <img id="reviewAvatar" src="images/noavatar.jpg" alt="">
             </div>
         </div>
 

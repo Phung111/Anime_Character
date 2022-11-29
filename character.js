@@ -14,12 +14,7 @@ class Character {
     }
 }
 
-var characters = [
-    new Character(1, "https://i.pravatar.cc/150?img=1", "Ken Kaneki", "Male", "2000-10-20", "Tokyo Ghoul", 500000),
-    new Character(2, "https://i.pravatar.cc/150?img=2", "Touka Kirishima", " Female", "2000-10-20", "Tokyo Ghoul", 500000),
-    new Character(3, "https://i.pravatar.cc/150?img=3", "Anya Forger", "Female", "2000-10-20", "Spy x Family", 500000),
-    new Character(4, "https://i.pravatar.cc/150?img=4", "Denji", "Male", "2000-10-20", "Chainsaw man", 500000),
-]
+var characters = []
 
 var genders = [
     "Male",
@@ -27,7 +22,21 @@ var genders = [
     "Hideyoshi"
 ]
 
-
+const character_db = "character_db"
+function init(){
+    if(localStorage.getItem(character_db) == null){
+        characters = [
+            new Character(1, "images/ken.jpg"    , "Ken Kaneki"      , "Male"   , "2000-10-20"  , "Tokyo Ghoul"     , 500000    ),
+            new Character(2, "images/touka.png"  , "Touka Kirishima" , "Female" , "2002-01-01"  , "Tokyo Ghoul"     , 600000    ),
+            new Character(3, "images/anya.jpg"   , "Anya Forger"     , "Female" , "2015-12-27"  , "Spy x Family"    , 450000    ),
+            new Character(4, "images/denji.jpg"  , "Denji"           , "Male"   , "2007-03-15"  , "Chainsaw Man"    , 1000000   ),
+        ]
+        localStorage.setItem(character_db, JSON.stringify(characters))
+    }
+    else{
+        characters = JSON.parse(localStorage.getItem(character_db));
+    }
+}
 function renderCharacter() {
     let htmls = characters.map(function(char){
         return `
@@ -59,12 +68,13 @@ function renderGender(){
     document.querySelector(`#gender`).innerHTML = htmls.join("")
 }
 
-function changeAvatar(){
-    let avatarUrl = document.getElementById("avatar").value;
-    if ( avatarUrl != null && avatarUrl != ""){
-        document.querySelector("#reviewAvatar").src = avatarUrl;
-    } else {
-        document.querySelector("#reviewAvatar").src = "images/noavatar.jpg";
+function changeAvatar() {
+    let avatarUrl = document.querySelector('#avatar').value;
+    if (avatarUrl != null && avatarUrl != "") {
+        document.querySelector('#reviewAvatar').src = avatarUrl;
+    }
+    else {
+        document.querySelector('#reviewAvatar').src = "images/noavatar.jpg"
     }
 }
 
@@ -78,9 +88,10 @@ function createCharacter(){
     let costume_price = document.querySelector("#costume-price").value;
     
     
-    characters.push(new Character(id, avatar, fullname, gender, dob, anime, costume_price))
-    renderCharacter()
-    resetCreateForm()
+    characters.push(new Character(id, avatar, fullname, gender, dob, anime, costume_price));
+    localStorage.setItem(character_db, JSON.stringify(characters));
+    renderCharacter();
+    resetCreateForm();
 }
 
 function resetCreateForm(){
@@ -90,7 +101,7 @@ function resetCreateForm(){
     document.querySelector("#dob").value = ""; 
     document.querySelector("#anime").value = ""; 
     document.querySelector("#costume-price").value = "";
-    document.querySelector('#reviewAvatar').src = "Anime_Character/image/noavatar.jpg/"
+    document.querySelector('#reviewAvatar').src = "images/noavatar.jpg"
     
     renderGender()
 }
@@ -106,7 +117,7 @@ function getMaxId(){
 }
 
 function ready(){
-    
+    init()
     renderGender()
     renderCharacter()
 }

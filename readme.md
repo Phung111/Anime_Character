@@ -14,9 +14,9 @@
 
 ## Template 
 
-https://www.pinterest.com/pin/903182900245371442/
+https://www.pinterest.com/pin/688487861798959269/
 
 ## Kết quả
 
-+ Link git: https://github.com/Phung111/CodeGym_DataTable_for_ProjectManagers.git
-+ Link sản phẩm: https://phung111.github.io/Anime_Character/
++ Link git: https://github.com/Phung111/Costume_Price.git
++ Link sản phẩm: https://phung111.github.io/Costume_Price/
