@@ -11,5 +11,5 @@
 + JavaScript
 
 ## Kết quả
-+ Link tham khảo:
-+ Link sản phẩm: 
++ Link tham khảo: https://www.pinterest.com/pin/903182900245371442/
++ Link sản phẩm: https://phung111.github.io/CodeGym_DataTable_for_ProjectManagers/
