@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="character.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="shortcut icon" href="image/rem.png" type="image/x-icon">
+    
+    <!-- Font Patrick Hand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <!--  -->
 </head>
 <body>
     <!-- Phần header -->
-    <!-- <div id="header">
+    <div id="header">
         <ul id="nav">
             <li><a href=""><i class="fa-solid fa-house"></i>  Home</a></li>
             <li><a href="">Cosplayer</a></li>
@@ -27,10 +33,24 @@
                 </ul>
             </li>
         </ul>
-    </div> -->
+        <div class="search-bar">
+            <input type="text" class="search-input d-none">
+        </div>
+        <div class="search-btn">
+            <b><i class="fa-solid fa-magnifying-glass search-icon" onclick="displaySearchInput()"></i></b>
+        </div>
+    </div>
+
+    <div id="slider">
+        <div class="text-content">
+            <h2 class="text-heading">New York</h2>
+            <p class="text-decription">The atmosphere in New York is lorem ipsum.</p>
+        </div>
+    </div>
+    
     
     <!-- Phần tạo form create và table -->
-    <div class="container"></div>
+    <div class="container">
         <div class="create-character">
             <div class="character-info">
                 <div class="form-group">
@@ -89,7 +109,18 @@
         </div>
 
     </div>
-    
+    <!-- Phần footer -->
+    <div class="footer">
+        <div class="social-list">
+            <a href=""><i class="social-icon fa-brands fa-facebook"></i></a>
+            <a href=""><i class="social-icon fa-brands fa-youtube"></i></a>
+            <a href=""><i class="social-icon fa-brands fa-instagram"></i></a>
+            <a href=""><i class="social-icon fa-brands fa-github"></i></a>
+            <a href=""><i class="social-icon fa-brands fa-discord"></i></a>
+            <a href=""><i class="social-icon fa-brands fa-twitter"></i></a>
+        </div>
+        <p class="text-footer"> Powered by w3.css</p>
+    </div>
     
     
     
@@ -99,4 +130,6 @@
     
     <script src="character.js"></script>
 </body>
+
+
 </html>

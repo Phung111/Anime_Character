@@ -124,4 +124,11 @@ function ready(){
 
 ready()
 
+// Nút search
+function displaySearchInput(){
+    document.querySelector(".search-input").classList.remove("d-none");
+}
 
+function cancelSearchInput(){
+    document.querySelector(".search-input").classList.add("d-none");
+}
