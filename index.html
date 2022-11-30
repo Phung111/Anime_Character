@@ -51,7 +51,10 @@
     
     <!-- Phần tạo form create và table -->
     <div class="container">
-        <div class="create-character">
+        <div class="container-header">
+            <h1 class="costume-list">COSTUME LIST</h1>
+        </div>
+        <div class="create-character d-none">
             <div class="character-info">
                 <div class="form-group">
                     <label for="avatar">Avatar</label>
@@ -80,8 +83,10 @@
                 </div>
                 <div class="form-group">
                     <label></label>
-                    <input type="button" class="btn btn-success" Value="Create" onclick="createCharacter()">
+                    <input type="button" class="btn btn-create" Value="Create" onclick="createCharacter()">
+                    <input type="button" class="btn btn-cancel" Value="Cancel" onclick="resetCreateForm()">
                 </div>
+                
             </div>
             <div class="character-avatar">
                 <img id="reviewAvatar" src="images/noavatar.jpg" alt="">
@@ -89,6 +94,8 @@
         </div>
 
         <div class="display-character">
+            <input type="button" class="btn btn-delete" value="Delete">
+            <input type="button" class="btn btn-show" value="Show" onclick="showContainer()">
             <table class="table table-hover">
                 <thead>
                     <tr>

@@ -1,6 +1,14 @@
 
 
+// Nút search
+function displaySearchInput(){
+    document.querySelector(".search-input").classList.remove("d-none");
+}
 
+function cancelSearchInput(){
+    document.querySelector(".search-input").classList.add("d-none");
+}
+// //////////
 
 class Character {
     constructor(id, avatar, fullname, gender, dob, anime, costume_price) {
@@ -116,6 +124,16 @@ function getMaxId(){
     return max;
 }
 
+function showContainer(){
+    document.querySelector('.create-character').classList.toggle('d-none');
+    if ( document.querySelector('.btn-show').value == "Show") {
+        document.querySelector('.btn-show').value = "Hide"
+    } else {
+        document.querySelector('.btn-show').value = "Show"
+    }
+}
+
+
 function ready(){
     init()
     renderGender()
@@ -124,11 +142,4 @@ function ready(){
 
 ready()
 
-// Nút search
-function displaySearchInput(){
-    document.querySelector(".search-input").classList.remove("d-none");
-}
 
-function cancelSearchInput(){
-    document.querySelector(".search-input").classList.add("d-none");
-}

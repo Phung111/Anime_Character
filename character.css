@@ -24,6 +24,7 @@ body {
     width: 100%;
     top: 0;
     left:0;
+    z-index: 100;
 }
 #nav{
     display: inline-block;
@@ -174,16 +175,46 @@ body {
 
 .btn{
     border-radius: 3px;
-    padding: 10px 25px;
+    padding: 5px 15px;
     border: none;
     outline: none;
-    background-color: rgb(91, 124, 254);
     color: white;
+    margin: 5px;
+    width: 90px;
 }
 
-.btn:hover{
+.btn-create{
+    background-color: rgb(91, 124, 254);
+}
+
+.btn-create:hover{
     background-color: rgb(59, 88, 203);
 }
+
+.btn-delete {
+    background-color: rgb(254, 124, 91);
+}
+
+.btn-delete:hover{
+    background-color: rgb(145, 72, 54);
+}
+
+.btn-show {
+    background-color: rgb(111, 131, 125);
+}
+
+.btn-show:hover{
+    background-color: rgb(82, 97, 92);
+}
+
+.btn-cancel {
+    background-color: rgb(111, 131, 125);
+}
+
+.btn-cancel:hover{
+    background-color: rgb(82, 97, 92);
+}
+
 
 .avatar {
     width: 30px;
@@ -313,4 +344,14 @@ table>tbody>tr {
 
 .text-decription{
     font-weight: 100;
+}
+
+.container-header{
+    text-align: center;
+    height: 100px;
+}
+
+.costume-list{
+    font-weight: 900;
+    font-size: 75px;
 }
