@@ -16,9 +16,9 @@
     <!--  -->
 </head>
 <body>
-    <audio autoplay>
+    <!-- <audio autoplay>
         <source src="images/gi.mp3" loop="true" type="audio/mpeg">
-    </audio>
+    </audio> -->
     <!-- Phần header -->
     <div id="header">
         <ul id="nav">
@@ -63,6 +63,7 @@
                 <div class="form-group">
                     <label for="avatar">Avatar</label>
                     <input type="text" id="avatar" class="form-control" onkeyup="changeAvatar()">
+                    <input type="hidden" id="characterId" value="0">
                 </div>
                 <div class="form-group">
                     <label for="fullname">Fullname</label>
@@ -87,10 +88,10 @@
                 </div>
                 <div class="form-group">
                     <label></label>
+                    <input type="button" class="btn btn-update d-none" Value="Update" onclick="updateCharacter()">
                     <input type="button" class="btn btn-create" Value="Create" onclick="createCharacter()">
                     <input type="button" class="btn btn-cancel" Value="Cancel" onclick="resetCreateForm()">
                 </div>
-                
             </div>
             <div class="character-avatar">
                 <img id="reviewAvatar" src="images/noavatar.jpg" alt="">
@@ -98,13 +99,18 @@
         </div>
 
         <div class="display-character">
-            <input type="button" class="btn btn-delete" value="Delete">
+            <input type="button" class="btn btn-delete" value="Delete" onclick="deleteCharacters()">
             <input type="button" class="btn btn-show" value="Add+" onclick="showContainer()">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th><input id="ckbCharacters" type="checkbox" onchange="selectAllCharacter()"></th>
-                        <th></th>
+                        <th id="thupdown">
+                            <div class="up-down-icon">
+                                <p><i id="sort_asc" class="sort fa-solid fa-caret-up" title="Ascending" onclick="sort('asc')"></i></p>
+                                <p><i id="sort_desc" class="sort fa-solid fa-caret-down" title="Descending" onclick="sort('desc')"></i></p>
+                            </div>
+                        </th>
                         <th>Full Name</th>
                         <th>Gender</th>
                         <th>Date of birth</th>

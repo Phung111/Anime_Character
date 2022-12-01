@@ -50,7 +50,7 @@ function renderCharacter(checked) {
         return `
                 <tr>
                     <td>
-                    <input onchange="selectAllCharacter(${char.id})" type="checkbox" ${checked ? "checked" : ""}>
+                    <input onchange="selectCharacter(${char.id})" type="checkbox" ${checked ? "checked" : ""}>
                     </td>
                     <td>
                         <div class="avatar-fullname">
@@ -63,7 +63,7 @@ function renderCharacter(checked) {
                     <td>${char.anime}</td>
                     <td>${char.costume_price}</td>
                     <td>
-                        <i class="fa-solid fa-user-pen"></i>
+                        <i class="fa-solid fa-user-pen" onclick="editCharacter(${char.id})"></i>
                     </td>
                 </tr>
                 `
@@ -114,6 +114,9 @@ function resetCreateForm(){
     document.querySelector('#reviewAvatar').src = "images/noavatar.jpg"
     
     renderGender()
+
+    document.querySelector('.btn-create').classList.remove('d-none');
+    document.querySelector('.btn-update').classList.add('d-none');
 }
 
 function getMaxId(){
@@ -136,13 +139,113 @@ function showContainer(){
 }
 
 function selectAllCharacter() {
+    let ckbCharacters = document.querySelector("#ckbCharacters");
+    renderCharacter(ckbCharacters.checked);
+    if (ckbCharacters.checked) {
+        selectedCharacters = characters.map(function (character) {
+            return character.id;
+        })
+    } else {
+        selectedCharacters = [];
+    }
+    console.log(selectedCharacters);
+}
 
+function selectCharacter(characterId){
+    if (selectedCharacters.includes(characterId)) {
+        selectedCharacters = selectedCharacters.filter(function (id) {
+            return id != characterId;
+        })
+    } else {
+        selectedCharacters.push(characterId)
+    }
+    document.querySelector("#ckbCharacters").checked = false;
+    console.log(selectedCharacters);
+
+}
+
+function deleteCharacters() {
+    if (selectedCharacters.length == 0) {
+        alert("Please select character to remove!")
+    } else {
+        let confirmed = window.confirm("Are you sure to remove character(s)?");
+        if (confirmed) {
+            for (let id of selectedCharacters) {
+                characters = characters.filter(function (char) {
+                    return char.id != id;
+                })
+            }
+            localStorage.setItem(character_db, JSON.stringify(characters));
+            renderCharacter(false);
+            selectedCharacters = [];
+            document.querySelector("#ckbCharacters").checked = false;
+        }
+    }
+}
+
+function editCharacter(characterId) {
+    showContainer()
+    let character = characters.find(function (character) {
+        return character.id == characterId
+    })
+    console.log(character.id);
+
+    document.querySelector('#characterId').value = character.id;
+
+    document.querySelector("#avatar").value = character.avatar; 
+    document.querySelector("#fullname").value = character.fullname; 
+    document.querySelector("#gender").value = character.gender; 
+    document.querySelector("#dob").value = character.dob; 
+    document.querySelector("#anime").value = character.anime; 
+    document.querySelector("#costume-price").value = character.costume_price;
+    document.querySelector('#reviewAvatar').src = character.avatar
+
+    document.querySelector('.btn-create').classList.add('d-none');
+    document.querySelector('.btn-update').classList.remove('d-none');
+}
+
+function updateCharacter() {
+    let characterId = document.querySelector('#characterId').value;
+    let character = characters.find(function (char) {
+        return char.id == characterId;
+    })
+
+    character.fullname = document.querySelector('#fullname').value;
+    character.avatar = document.querySelector('#avatar').value;
+    character.gender = document.querySelector('#gender').value;
+    character.dob = document.querySelector('#dob').value;
+    character.anime = document.querySelector('#anime').value;
+    character.costume_price = document.querySelector('#costume-price').value;
+
+    localStorage.setItem(character_db, JSON.stringify(characters));
+    renderCharacter(false);
+    resetCreateForm();
+    console.log(characterId);
+}
+
+function sort(direction){
+    if (direction == 'asc') {
+        characters.sort(function (character_1, character_2) {
+            return character_1.id - character_2.id;
+        })
+        document.querySelector('#sort_asc').classList.add('sort-active');
+        document.querySelector('#sort_desc').classList.remove('sort-active');
+    }
+    else {
+        characters.sort(function (character_1, character_2) {
+            return character_2.id - character_1.id;
+        })
+        document.querySelector('#sort_asc').classList.remove('sort-active');
+        document.querySelector('#sort_desc').classList.add('sort-active');
+    }
+    renderCharacter(false)
 }
 
 function ready(){
     init()
     renderGender()
-    renderCharacter(false)
+    
+    sort('arc')
 }
 
 ready()
