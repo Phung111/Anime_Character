@@ -25,6 +25,7 @@ body {
     top: 0;
     left:0;
     z-index: 100;
+    font-size: 15px;
 }
 #nav{
     display: inline-block;
@@ -99,15 +100,22 @@ body {
     /*  */
 
     /* Search bar */
+.search{
+    position: relative;
+    float: right;
+    display: flex;
+    width: 25%;
+}
+
 .search-bar{
-  display: inline-block;
-  line-height: 45px;
-  text-align: right;
-  width: 430px;
+    display: inline-block;
+    line-height: 45px;
+    text-align: right;
+    width: 250px;
 }
 
 .search-input{
-    width: 80%;
+    width: 100%;
     outline: none;
     border: none;
     border-radius: 10px;
@@ -119,7 +127,7 @@ body {
 
 
 .container{
-    max-width: 1000px;
+    max-width: 90%;
     /* height: 1000px; */
     margin: 0px auto;
     /* padding: 100px; */
@@ -159,13 +167,13 @@ body {
 }
 
 .form-group>label{
-    width: 25%;
+    width: 30%;
     text-align: right;
     padding-right: 20px;
 }
 
 .form-control{
-    width: 75%;
+    width: 70%;
     padding: 5px 2px;
     outline: none;
     margin-bottom: 3px;
@@ -354,4 +362,5 @@ table>tbody>tr {
 .costume-list{
     font-weight: 900;
     font-size: 75px;
+    color: white;
 }
