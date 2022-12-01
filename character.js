@@ -184,7 +184,6 @@ function deleteCharacters() {
 }
 
 function editCharacter(characterId) {
-    showContainer()
     let character = characters.find(function (character) {
         return character.id == characterId
     })
