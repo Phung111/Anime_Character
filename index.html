@@ -7,7 +7,7 @@
     <title>Costume Price</title>
     <link rel="stylesheet" href="character.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link rel="shortcut icon" href="image/rem.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/rem.png" type="image/x-icon">
     
     <!-- Font Patrick Hand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,11 +16,14 @@
     <!--  -->
 </head>
 <body>
+    <audio autoplay>
+        <source src="images/gi.mp3" loop="true" type="audio/mpeg">
+    </audio>
     <!-- Phần header -->
     <div id="header">
         <ul id="nav">
             <li><a href=""><i class="fa-solid fa-house"></i>  Home</a></li>
-            <li><a href="">Cosplayer</a></li>
+            <li><a href="#container">Cosplayer</a></li>
             <li><a href="">Festival</a></li>
             <li>
                 <a href="">More</a>
@@ -51,7 +54,7 @@
     
     
     <!-- Phần tạo form create và table -->
-    <div class="container">
+    <div class="container" id="container">
         <div class="container-header">
             <h1 class="costume-list">COSTUME LIST</h1>
         </div>
@@ -96,11 +99,11 @@
 
         <div class="display-character">
             <input type="button" class="btn btn-delete" value="Delete">
-            <input type="button" class="btn btn-show" value="Show" onclick="showContainer()">
+            <input type="button" class="btn btn-show" value="Add+" onclick="showContainer()">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th><input type="checkbox"></th>
+                        <th><input id="ckbCharacters" type="checkbox" onchange="selectAllCharacter()"></th>
                         <th></th>
                         <th>Full Name</th>
                         <th>Gender</th>

@@ -1,5 +1,3 @@
-
-
 // Nút search
 function displaySearchInput(){
     document.querySelector(".search-input").classList.remove("d-none");
@@ -21,6 +19,8 @@ class Character {
         this.costume_price = costume_price;
     }
 }
+
+var selectedCharacters =[]
 
 var characters = []
 
@@ -45,11 +45,13 @@ function init(){
         characters = JSON.parse(localStorage.getItem(character_db));
     }
 }
-function renderCharacter() {
+function renderCharacter(checked) {
     let htmls = characters.map(function(char){
         return `
                 <tr>
-                    <td><input type="checkbox"></td>
+                    <td>
+                    <input onchange="selectAllCharacter(${char.id})" type="checkbox" ${checked ? "checked" : ""}>
+                    </td>
                     <td>
                         <div class="avatar-fullname">
                             <img class="avatar" src="${char.avatar}" alt="">
@@ -98,7 +100,7 @@ function createCharacter(){
     
     characters.push(new Character(id, avatar, fullname, gender, dob, anime, costume_price));
     localStorage.setItem(character_db, JSON.stringify(characters));
-    renderCharacter();
+    renderCharacter(false);
     resetCreateForm();
 }
 
@@ -126,18 +128,21 @@ function getMaxId(){
 
 function showContainer(){
     document.querySelector('.create-character').classList.toggle('d-none');
-    if ( document.querySelector('.btn-show').value == "Show") {
+    if ( document.querySelector('.btn-show').value == "Add+") {
         document.querySelector('.btn-show').value = "Hide"
     } else {
-        document.querySelector('.btn-show').value = "Show"
+        document.querySelector('.btn-show').value = "Add+"
     }
 }
 
+function selectAllCharacter() {
+
+}
 
 function ready(){
     init()
     renderGender()
-    renderCharacter()
+    renderCharacter(false)
 }
 
 ready()
