@@ -1,8 +1,8 @@
 
 :root{
-    --xanh-nen: rgb(231,238,248);
     --xanh-dam: rgb(91, 124, 254);
     --xanh-nhat: rgb(137,207,240);
+    --xanh-nhatnhat: rgb(231,238,248);
 
 }
 
@@ -16,10 +16,10 @@
 }
 
 html{
-    background-color: var(--xanh-nen);
+    background-color: var(--xanh-nhatnhat);
 }
 body {
-    background-color: var(--xanh-nen);
+    background-color: var(--xanh-nhatnhat);
 }
 /* Phần header */
 #header{
@@ -372,12 +372,12 @@ table>tbody>tr {
     font-weight: 100;
 }
 
-.container-header{
+.container-header, .festival-heading{
     text-align: center;
     height: 100px;
 }
 
-.costume-list{
+.costume-list, .festival-topic{
     font-weight: 900;
     font-size: 75px;
     color: white;
@@ -411,7 +411,7 @@ table>tbody>tr {
     margin-bottom: 60px;
     width: 100%;
     max-height: 800px;
-    background-color: #000;
+    background-color: var(--xanh-nhat);
     display: flex;
     align-items: center;
     
@@ -425,17 +425,42 @@ table>tbody>tr {
 }
 
 .festival-heading{
-    background-color: rgb(254, 0, 0);
+    background-color: var(--xanh-nhatnhat);
     height: 100px;
 }
 
 .festival-slogan{
     background-color: rgb(229, 249, 0);
     height: 50px;
+    text-align: center;
+}
+.festival-slogan>i{
+    color: rgb(207, 207, 207);
+    line-height: 50px;
 }
 
 .festival-list{
     background-color: rgb(2, 14, 255);
     height: 300px;
+    color: rgb(207, 207, 207);
+    font-weight: 10;
+}
 
+.festival-list>div{
+    height: 45px;
+    display: flex;
+    line-height: 45px;
+    padding-left: 20px;
+}
+
+.fes-td1{
+    width: 60%;
+}
+
+.fes-td2{
+    width: 20%;
+}
+
+.fes-td3{
+    width: 20%;
 }
