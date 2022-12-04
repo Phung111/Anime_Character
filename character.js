@@ -34,10 +34,10 @@ const character_db = "character_db"
 function init(){
     if(localStorage.getItem(character_db) == null){
         characters = [
-            new Character(1, "images/ken.jpg"    , "Ken Kaneki"      , "Male"   , "2000-10-20"  , "Tokyo Ghoul"     , 500000    ),
-            new Character(2, "images/touka.png"  , "Touka Kirishima" , "Female" , "2002-01-01"  , "Tokyo Ghoul"     , 600000    ),
-            new Character(3, "images/anya.jpg"   , "Anya Forger"     , "Female" , "2015-12-27"  , "Spy x Family"    , 450000    ),
-            new Character(4, "images/denji.jpg"  , "Denji"           , "Male"   , "2007-03-15"  , "Chainsaw Man"    , 1000000   ),
+            new Character(1, "images/ken.jpg"    , "Ken Kaneki"      , "Male"   , "2000-10-20"  , "Tokyo Ghoul"     , "500.000"    ),
+            new Character(2, "images/touka.png"  , "Touka Kirishima" , "Female" , "2002-01-01"  , "Tokyo Ghoul"     , "600.000"   ),
+            new Character(3, "images/anya.jpg"   , "Anya Forger"     , "Female" , "2015-12-27"  , "Spy x Family"    , "450.000"    ),
+            new Character(4, "images/denji.jpg"  , "Denji"           , "Male"   , "2007-03-15"  , "Chainsaw Man"    , "1.000.000"   ),
         ]
         localStorage.setItem(character_db, JSON.stringify(characters))
     }
@@ -88,6 +88,10 @@ function changeAvatar() {
     }
 }
 
+function checkEmpty(value) {
+    return value == null || value.trim() == '';
+}
+
 function createCharacter(){
     let id = getMaxId() + 1;
     let avatar = document.querySelector("#avatar").value; 
@@ -97,7 +101,11 @@ function createCharacter(){
     let anime = document.querySelector("#anime").value; 
     let costume_price = document.querySelector("#costume-price").value;
     
-    
+    if (checkEmpty(avatar) || checkEmpty(fullname) || checkEmpty(gender) || checkEmpty(dob) || checkEmpty(anime) || checkEmpty(costume_price)){
+        alert("Please enter full infomation");
+        return;
+    }
+
     characters.push(new Character(id, avatar, fullname, gender, dob, anime, costume_price));
     localStorage.setItem(character_db, JSON.stringify(characters));
     renderCharacter(false);
@@ -219,7 +227,6 @@ function updateCharacter() {
     localStorage.setItem(character_db, JSON.stringify(characters));
     renderCharacter(false);
     resetCreateForm();
-    console.log(characterId);
 }
 
 function sort(direction){
@@ -240,13 +247,316 @@ function sort(direction){
     renderCharacter(false)
 }
 
+
+
+// Festival
+
+class Festival {
+    constructor(id, name, date, price, sold){
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.price = price;
+        this.sold = sold;
+    }
+}
+
+var festivals=[]
+
+const festival_db = "festival_db"
+function init2(){   
+    if(localStorage.getItem(festival_db) == null){
+        festivals = [
+            new Festival(0  ,   "Lễ hội giao lưu văn hoá Việt - Nhật "  , "27.12-28.12.2022" , "150.000", "1.5k sold"),
+            new Festival(1  ,   "Lễ hội giao lưu văn hoá Việt - Nhật 2"  , "01.01-03.01.2023" , "200.000", "2k sold"),
+            new Festival(2  ,   "Lễ hội giao lưu văn hoá Việt - Nhật 3"  , "24.05-27.05.2023" , "300.000", "3k sold"),
+            new Festival(3  ,   "Lễ hội giao lưu văn hoá Việt - Nhật 4"  , "10.10-13.10.2023" , "400.000", "4k sold"),
+            new Festival(4  ,   ""  , "", "", ""),
+        ]
+        localStorage.setItem(festival_db, JSON.stringify(festivals))
+    }
+    else {
+        festivals = JSON.parse(localStorage.getItem(festival_db));
+    }
+}
+
+
+function renderFestival(){
+    let htmls = festivals.map(function(fes){
+        return   `
+                    <div class="fes-tr" id="fes_${fes.id}">
+                        <div class="fes-td1">
+                        ${fes.name}
+                        </div>
+                        <div class="fes-td5">
+                        ${fes.date}
+                        </div>
+                        <div class="fes-td2">
+                        ${fes.price}
+                        </div>
+                        <div class="fes-td3">
+                        ${fes.sold}
+                        </div>
+                        <div class="fes-td4" >
+                            <input type="text" class="d-none">
+                            <i class="fa-solid fa-square-check d-none" onclick="confirmEditFestival()"></i>
+                            <i class="fa-solid fa-square-xmark d-none" onclick="cancelEditFestival()"></i>
+                            <i class="fa-solid fa-pen-to-square" onclick="editFestival(${fes.id})"></i>
+                            <i class="fa-solid fa-trash" onclick="deleteFestival(${fes.id})"></i>
+                        </div>
+                    </div>
+                `
+    })
+    document.querySelector(`.festival-list`).innerHTML = htmls.join("")
+}
+
+function editFestival(festivalId){
+    let festival = festivals.find(function (festival) {
+        return festival.id == festivalId;
+    })
+
+    document.querySelector('#festivalId').value = festival.id;
+
+    document.querySelector(`#fes_${festivalId} .fes-td1`).innerHTML = `<input type="text" class="input-festival input-festival-name"    value="${festival.name}"    placeholder="Festival Name">`
+    document.querySelector(`#fes_${festivalId} .fes-td5`).innerHTML = `<input type="text" class="input-festival input-festival-date"    value="${festival.date}"    placeholder="dd.mm-dd.mm.yyyy">`
+    document.querySelector(`#fes_${festivalId} .fes-td2`).innerHTML = `<input type="text" class="input-festival input-festival-price"   value="${festival.price}"   placeholder="Price">`
+    document.querySelector(`#fes_${festivalId} .fes-td3`).innerHTML = `<input type="text" class="input-festival input-festival-sold"    value="${festival.sold}"    placeholder="Total Sold">`
+    
+    document.querySelector(`#fes_${festivalId} .fa-square-check`).classList.toggle('d-none')
+    document.querySelector(`#fes_${festivalId} .fa-square-xmark`).classList.toggle('d-none')
+    document.querySelector(`#fes_${festivalId} .fa-pen-to-square`).classList.toggle('d-none')
+
+}
+
+function confirmEditFestival(){
+    let festivalId = document.querySelector('#festivalId').value;
+    let festival = festivals.find(function (festival) {
+        return festival.id == festivalId;
+    })
+    let inputFestivalName = document.querySelector(`#fes_${festivalId} .fes-td1 .input-festival-name`).value;
+    let inputFestivalDate = document.querySelector(`#fes_${festivalId} .fes-td5 .input-festival-date`).value;
+    let inputFestivalPrice = document.querySelector(`#fes_${festivalId} .fes-td2 .input-festival-price`).value;
+    let inputFestivalSold = document.querySelector(`#fes_${festivalId} .fes-td3 .input-festival-sold`).value;
+
+    if (checkEmpty(inputFestivalName) || checkEmpty(inputFestivalPrice) || checkEmpty(inputFestivalSold) || checkEmpty(inputFestivalDate)){
+        alert("Please enter full infomation");
+        return;
+    }
+
+    festival.name = inputFestivalName;
+    festival.date = inputFestivalDate;
+    festival.price = inputFestivalPrice;
+    festival.sold = inputFestivalSold;
+    
+    inputFestivalName  = document.querySelector(`#fes_${festivalId} .fes-td1`).innerHTML;
+    inputFestivalDate  = document.querySelector(`#fes_${festivalId} .fes-td5`).innerHTML;
+    inputFestivalPrice = document.querySelector(`#fes_${festivalId} .fes-td2`).innerHTML;
+    inputFestivalSold  = document.querySelector(`#fes_${festivalId} .fes-td3`).innerHTML;
+    
+    document.querySelector(`#fes_${festivalId} .fa-square-check`).classList.toggle('d-none')
+    document.querySelector(`#fes_${festivalId} .fa-square-xmark`).classList.toggle('d-none')
+    document.querySelector(`#fes_${festivalId} .fa-pen-to-square`).classList.toggle('d-none')
+
+    addFestivalList(festivalId)
+    localStorage.setItem(festival_db, JSON.stringify(festivals));
+    renderFestival();
+
+    console.log(festivals);
+}
+
+function cancelEditFestival(){
+    let festivalId = document.querySelector('#festivalId').value;
+    let festival = festivals.find(function (festival) {
+        return festival.id == festivalId;
+    })
+    
+    document.querySelector(`#fes_${festivalId} .fa-square-check`).classList.toggle('d-none')
+    document.querySelector(`#fes_${festivalId} .fa-square-xmark`).classList.toggle('d-none')
+    document.querySelector(`#fes_${festivalId} .fa-pen-to-square`).classList.toggle('d-none')
+
+    document.querySelector(`#fes_${festivalId} .fes-td1`).innerHTML = festival.name;
+    document.querySelector(`#fes_${festivalId} .fes-td5`).innerHTML = festival.date;
+    document.querySelector(`#fes_${festivalId} .fes-td2`).innerHTML = festival.price;
+    document.querySelector(`#fes_${festivalId} .fes-td3`).innerHTML = festival.sold;
+
+}
+
+function deleteFestival(idDelete){
+    let confirmed = window.confirm("Are you sure to remove this festival?");
+    if (confirmed) {
+        for (let id of festivals) {
+            festivals = festivals.filter(function (festival) {
+                return festival.id != idDelete;
+            })
+        }
+        localStorage.setItem(festival_db, JSON.stringify(festivals));
+        renderFestival();
+    }
+
+}
+
+function addFestivalList(index){
+    if (index == getIdMaxFestival()) {
+        festivals.push(new Festival( getIdMaxFestival() + 1 ,   ""  , "", "",""));
+        localStorage.setItem(festival_db, JSON.stringify(festivals));
+        renderFestival();
+    }
+}
+
+function getIdMaxFestival(){
+    let max = 0;
+    for (let i = 0; i < festivals.length; i++){
+        if (festivals[i].id > max) {
+            max = festivals[i].id
+        }
+    }
+    return max;
+}
+
+// Phần shop//
+class Shop {
+    constructor(id, name, avatar, link) {
+        this.id = id;
+        this.name = name;
+        this.avatar = avatar;
+        this.link = link;
+    }
+}
+
+var shops = []
+
+const shop_db = "shop_db";
+function init3(){
+    if (localStorage.getItem(shop_db) == null){
+        shops = [
+            new Shop(0, "Otaku Store"       , "images/shop/otakustore.jpg"      , "https://otakustore.vn/"                            ),
+            new Shop(1, "Phụ kiện One Piece", "images/shop/phukienonepiece.jpg" , "https://www.facebook.com/phukienonepiece"          ),
+            new Shop(2, "Inox4u"            , "images/shop/inox4u.png"          , "https://www.facebook.com/inox4u"                   ),
+            new Shop(3, "Shopee"            , "images/shop/shopee.jpg"          , "https://shopee.vn/"                                ),
+            new Shop(4, "Tiki"              , "images/shop/tiki.jpg"            , "https://tiki.vn/"                                ),
+        ]
+        localStorage.setItem(shop_db, JSON.stringify(shops))
+    } else {
+        shops = JSON.parse(localStorage.getItem(shop_db));
+    }
+}
+
+function renderShop(){
+    let htmls = shops.map(function(shop){
+        return  `
+                <div class="shop-div">
+                    <div class="shop-coverContent">
+                        <a href="${shop.link}" style="text-decoration: none" target="_blank">
+                        <div class="shop-avatar">
+                            <img src="${shop.avatar}" alt="">
+                        </div>
+                        </a>
+                        <div class="shop-nameAndDelete">
+                            <div class="shop-name">
+                                <p>${shop.name}</p>
+                            </div>
+                            <div class="shop-delete">
+                                <i class="fa-solid fa-trash" onclick="deleteShop(${shop.id})"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+    })
+    document.querySelector(".shop-displayshop").innerHTML = htmls.join("")
+}
+
+function changeShopAvatar(){
+    let avatarUrl = document.querySelector("#shop-inputAvatar").value;
+    if (avatarUrl != null && avatarUrl != "") {
+        document.querySelector('#shop-review-avatar').src = avatarUrl;
+    }
+    else {
+        document.querySelector('#shop-review-avatar').src = "images/shop/shopnoavatar.jpg"
+    }
+}
+
+function getShopMaxId(){
+    let max = 0;
+    for (let i = 0; i < shops.length; i++){
+        if (shops[i].id > max ) {
+            max = shops[i].id
+        }
+    }
+    return max;
+}
+
+function addShop(){
+    document.querySelector(".shop-inputBg").classList.toggle("d-none")
+}
+
+function deleteShop(idShopDelete){
+    let confirmed = window.confirm("Are you sure to remove this shop?");
+    if (confirmed) {
+        for (let id of shops) {
+            shops = shops.filter(function (shop) {
+                return shop.id != idShopDelete;
+            })
+        }
+        localStorage.setItem(shop_db, JSON.stringify(shops));
+        renderShop();
+    }
+}
+
+function confirmShopAdd(){
+    let id = getShopMaxId() + 1;
+    let name = document.querySelector("#shop-inputName").value;
+    let avatar = document.querySelector("#shop-inputAvatar").value;
+    let link = document.querySelector("#shop-inputLink").value;
+    
+    if (checkEmpty(name) || checkEmpty(avatar) || checkEmpty(link)){
+        alert("Please enter full infomation");
+        return;
+    }
+
+    shops.push(new Shop(id, name, avatar, link));
+    localStorage.setItem(shop_db, JSON.stringify(shops));
+    renderShop();
+    cancelShopAdd();
+    
+}
+
+function cancelShopAdd(){
+    document.querySelector(".shop-inputBg").classList.toggle("d-none");
+    resetShopForm()
+}
+
+function resetShopForm(){
+    document.querySelector("#shop-inputName").value = "";
+    document.querySelector("#shop-inputAvatar").value = "";
+    document.querySelector("#shop-inputLink").value = "";
+    document.querySelector('#shop-review-avatar').src = "images/shop/shopnoavatar.jpg";
+    renderShop();
+}
+
+// function toVndMoney(){
+    //     characters.map(function(number){
+    //         return number.costume_price = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number.costume_price);
+    //     });
+    //     festivals.map(function(fes){
+    //         return fes.price = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(fes.price);
+    //     });
+    // }    
+
+
+//Run
 function ready(){
+    
     init()
     renderGender()
-    
+    renderCharacter(false)
     sort('arc')
+
+    init2()  
+    renderFestival()
+
+    init3()
+    renderShop()
 }
 
 ready()
-
-

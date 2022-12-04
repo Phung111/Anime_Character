@@ -16,17 +16,18 @@
     <!--  -->
 </head>
 <body>
-    <audio autoplay>
+    <!-- <audio autoplay>
         <source src="images/gi.mp3" loop="true" type="audio/mpeg">
-    </audio>
+    </audio> -->
     <!-- Phần header -->
     <div id="header">
         <ul id="nav">
-            <li><a href=""><i class="fa-solid fa-house"></i>  Home</a></li>
-            <li><a href="#container">Cosplayer</a></li>
-            <li><a href="">Festival</a></li>
+            <li><a href="#slider1"><i class="fa-solid fa-house"></i>  Home</a></li>
+            <li><a href="#cosplayer1">Cosplayer</a></li>
+            <li><a href="#festival1">Festival</a></li>
+            <li><a href="#shop1">Shop</a></li>
             <li>
-                <a href="">More</a>
+                <a href="">More <i class="fa-solid fa-caret-down"></i></a>
                 <ul class="subnav">
                     <li><a href="">Present</a></li>
                     <li><a href="">Music</a></li>
@@ -45,6 +46,7 @@
         </div>
     </div>
         <!-- Slider -->
+    <div id="slider1"></div>
     <div id="slider">
         <div class="text-content">
             <h2 class="text-heading">Da Nang</h2>
@@ -54,6 +56,7 @@
     
     
     <!-- Phần tạo form create và table -->
+    <div id="cosplayer1"></div>
     <div class="container" id="container">
         <div class="container-header">
             <h1 class="costume-list">COSTUME LIST</h1>
@@ -62,12 +65,12 @@
             <div class="character-info">
                 <div class="form-group">
                     <label for="avatar">Avatar</label>
-                    <input type="text" id="avatar" class="form-control" onkeyup="changeAvatar()">
+                    <input type="text" id="avatar" class="form-control" onkeyup="changeAvatar()" placeholder="https://i.pravatar.cc/150?img=100">
                     <input type="hidden" id="characterId" value="0">
                 </div>
                 <div class="form-group">
                     <label for="fullname">Fullname</label>
-                    <input type="text" id="fullname" class="form-control">
+                    <input type="text" id="fullname" class="form-control" placeholder="Full Name">
                 </div>
                 <div class="form-group">
                     <label for="gender">Gender</label>
@@ -80,11 +83,11 @@
                 </div>
                 <div class="form-group">
                     <label for="anime">Anime</label>
-                    <input type="text" id="anime" class="form-control">
+                    <input type="text" id="anime" class="form-control" placeholder="Anime">
                 </div>
                 <div class="form-group">
                     <label for="costume-price">Costume Price</label>
-                    <input type="number" id="costume-price" class="form-control">
+                    <input type="number" id="costume-price" class="form-control" placeholder="100.000">
                 </div>
                 <div class="form-group">
                     <label></label>
@@ -128,6 +131,7 @@
     </div>
 
     <!-- Phần festival -->
+    <div id="festival1"></div>
     <div id="festival">
         <div class="festival-content">
             <div class="festival-heading">
@@ -136,22 +140,92 @@
             <div class="festival-slogan">
                 <i>Best event to cosplay!</i>
             </div>
-            <div class="festival-list">
-                <div>
-                    <div class="fes-td1">Tên fes</div>
-                    <div class="fes-td2">giá vé</div>
-                    <div class="fes-td3">số lượng vé còn lại</div>
-                </div>
-                <div><i>abcdef</i></div>
-                <div><i>abcdef</i></div>
-                <div><i>abcdef</i></div>
-                <div><i>abcdef</i></div>
+            <!-- <div class="btn-addFestivalList">
+                <button onclick="addFestivalList()">Add+</button>
+            </div> -->
+            <input type="hidden" id="festivalId" value="0">
+            <div id="festival-list" class="festival-list">
+                
             </div>
 
         </div>
-
+        
     </div>
+    
+    
 
+    
+    <!-- Phần đăng ký shop -->
+    <div id="shop1"></div>
+    <div id="shop">
+        <div class="shop-container" href="">
+            <div class="shop-heading">
+                <h1 class="shop-topic">SHOP</h1>
+            </div>
+            <div class="shop-btnResign" >
+                <div class="bgdam1">
+                    <div class="shop-btnResign-bg1"></div>
+                </div>
+                <div class="shop-btnResign-bgMiddle">
+                    <h3 onclick="addShop()">Register your shop +</h3>
+                </div> 
+                <div class="bgdam2">
+                    <div class="shop-btnResign-bg2"></div>
+                </div>
+            </div>
+            <div class="shop-displayshop">
+                <!-- <div class="shop-div">
+                    <div class="shop-coverContent">
+                        <a href="https://otakustore.vn/" style="text-decoration: none" target="_blank">
+                        <div class="shop-avatar">
+                            <img src="images/shop/otakustore.jpg" alt="">
+                        </div>
+                        </a>
+                        <div class="shop-nameAndDelete">
+                            <div class="shop-name">
+                                <p>Phụ kiện One Piece</p>
+                            </div>
+                            <div class="shop-delete">
+                                <i class="fa-solid fa-trash" onclick="deleteShop()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="shop-inputBg d-none ">
+            <div class="shop-inputForm">
+                <div class="shop-inputForm-header">
+                    <h2>ENTER YOUR SHOP'S INFORMATION</h2>
+                </div>
+                <div class="shop-inputForm-body">
+                    <div class="shop-inputForm-displayAvatar">
+                        <img id="shop-review-avatar" src="images/shop/shopnoavatar.jpg" alt="" >
+                    </div>
+                    <div class="shop-inputForm-text">
+                        <div class="shop-input">
+                            <label for="shop-inputName">Shop Name</label>
+                            <input type="text" id="shop-inputName" class="shop-formControl" placeholder="Lorem Ipsum">
+                            <input type="hidden" id="characterId" value="0">
+                        </div>
+                        <div class="shop-input">
+                            <label for="shop-inputAvatar">Shop Avatar</label>
+                            <input type="text" id="shop-inputAvatar" class="shop-formControl" placeholder="https://i.pravatar.cc/150?img=100" onkeyup="changeShopAvatar()">
+                        </div>
+                        <div class="shop-input">
+                            <label for="shop-inputLink">Shop Link</label>
+                            <input type="text" id="shop-inputLink" class="shop-formControl" placeholder="htttps or www">
+                        </div>
+                    </div>
+                </div>
+                <div class="shop-inputForm-btn">
+                    <i class="fa-solid fa-square-check" onclick="confirmShopAdd()"></i>
+                    <i class="fa-solid fa-square-xmark" onclick="cancelShopAdd()"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -177,7 +251,7 @@
             <a href=""><i class="social-icon fa-brands fa-discord"></i></a>
             <a href=""><i class="social-icon fa-brands fa-twitter"></i></a>
         </div>
-        <p class="text-footer"> Powered by w3.css</p>
+        <p class="text-footer"> Powered by CodeGym</p>
     </div>
     
     <script src="character.js"></script>
