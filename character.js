@@ -8,6 +8,41 @@ function cancelSearchInput(){
 }
 // //////////
 
+
+// Phần login
+
+// function confirmLogin(){
+//     let loginName = document.querySelector("#login .login-name").value;
+//     if (loginName == null || loginName == ""){
+//         alert("You must enter your account!!");
+//         return;
+//     } else if (loginName == "admin") {
+//         document.querySelector(".account-div").innerHTML = "Admin";
+//     } else if (loginName == "user") {
+//         document.querySelector(".account-div").innerHTML = "User";
+        
+//         // document.querySelectorAll(".fa-user-pen").classList.add("dL-none");
+//         // document.querySelectorAll(".btn-delete").classList.add("dL-none");
+//         // document.querySelectorAll(".fa-trash").classList.add("dL-none");
+//         // document.querySelectorAll(".").classList.toggle("dL-none");
+//         // document.querySelectorAll(".").classList.toggle("dL-none");
+//         // document.querySelectorAll(".").classList.toggle("dL-none");
+//     }
+
+//     document.querySelector("#login").classList.toggle("dL-none");
+// }
+
+// function cancelLogin(){
+//     document.querySelector(".login-name").value = "";
+// }
+
+// function showLogin(){
+//     document.querySelector("#login").classList.toggle("dL-none");
+// }
+
+///////////
+
+// Phần cosplayer
 class Character {
     constructor(id, avatar, fullname, gender, dob, anime, costume_price) {
         this.id = id;
