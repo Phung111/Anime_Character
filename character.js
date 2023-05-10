@@ -246,7 +246,8 @@ function editCharacter(characterId) {
     document.querySelector('.btn-update').classList.remove('d-none');
 }
 
-function updateCharacter() {
+function updateCustomer() {
+    alert("ok")
     let characterId = document.querySelector('#characterId').value;
     let character = characters.find(function (char) {
         return char.id == characterId;

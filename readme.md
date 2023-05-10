@@ -19,4 +19,4 @@ https://www.pinterest.com/pin/688487861798959269/
 ## Kết quả
 
 + Link git: https://github.com/Phung111/Costume_Price.git
-+ Link sản phẩm: https://phung111.github.io/Costume_Price/
++ Link sản phẩm: https://phung111.github.io/Module_1_Costume_Price/
