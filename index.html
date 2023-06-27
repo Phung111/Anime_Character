@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,19 @@
     <link rel="stylesheet" href="character.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="shortcut icon" href="images/rem.png" type="image/x-icon">
-    
+
     <!-- Font Patrick Hand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Roboto:wght@100&display=swap"
+        rel="stylesheet">
     <!--  -->
 </head>
+
 <body>
-    <!-- <audio autoplay>
+    <audio autoplay>
         <source src="images/gi.mp3" loop="true" type="audio/mpeg">
-    </audio> -->
+    </audio>
     <!-- Phần login -->
     <!-- <div id="login" class="login">
         <div class="login-content">
@@ -38,7 +41,7 @@
     <!-- Phần header -->
     <div id="header">
         <ul id="nav">
-            <li><a href="#slider1"><i class="fa-solid fa-house"></i>  Home</a></li>
+            <li><a href="#slider1"><i class="fa-solid fa-house"></i> Home</a></li>
             <li><a href="#cosplayer1">Cosplayer</a></li>
             <li><a href="#festival1">Festival</a></li>
             <li><a href="#shop1">Shop</a></li>
@@ -66,11 +69,11 @@
             <div class="search-btn">
                 <b><i class="fa-solid fa-magnifying-glass search-icon" onclick="displaySearchInput()"></i></b>
             </div>
-            
+
         </div>
-        
+
     </div>
-        <!-- Slider -->
+    <!-- Slider -->
     <div id="slider1"></div>
     <div id="slider">
         <div class="text-content">
@@ -78,8 +81,8 @@
             <p class="text-decription">The atmosphere in Da Nang is lorem ipsum.</p>
         </div>
     </div>
-    
-    
+
+
     <!-- Phần tạo form create và table -->
     <div id="cosplayer1"></div>
     <div class="container" id="container">
@@ -90,7 +93,8 @@
             <div class="character-info">
                 <div class="form-group">
                     <label for="avatar">Avatar</label>
-                    <input type="text" id="avatar" class="form-control" onkeyup="changeAvatar()" placeholder="https://i.pravatar.cc/150?img=100">
+                    <input type="text" id="avatar" class="form-control" onkeyup="changeAvatar()"
+                        placeholder="https://i.pravatar.cc/150?img=100">
                     <input type="hidden" id="characterId" value="0">
                 </div>
                 <div class="form-group">
@@ -135,8 +139,10 @@
                         <th><input id="ckbCharacters" type="checkbox" onchange="selectAllCharacter()"></th>
                         <th id="thupdown">
                             <div class="up-down-icon">
-                                <p><i id="sort_asc" class="sort fa-solid fa-caret-up" title="Ascending" onclick="sort('asc')"></i></p>
-                                <p><i id="sort_desc" class="sort fa-solid fa-caret-down" title="Descending" onclick="sort('desc')"></i></p>
+                                <p><i id="sort_asc" class="sort fa-solid fa-caret-up" title="Ascending"
+                                        onclick="sort('asc')"></i></p>
+                                <p><i id="sort_desc" class="sort fa-solid fa-caret-down" title="Descending"
+                                        onclick="sort('desc')"></i></p>
                             </div>
                         </th>
                         <th>Full Name</th>
@@ -148,7 +154,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -170,16 +176,16 @@
             </div> -->
             <input type="hidden" id="festivalId" value="0">
             <div id="festival-list" class="festival-list">
-                
+
             </div>
 
         </div>
-        
-    </div>
-    
-    
 
-    
+    </div>
+
+
+
+
     <!-- Phần đăng ký shop -->
     <div id="shop1"></div>
     <div id="shop">
@@ -187,13 +193,13 @@
             <div class="shop-heading">
                 <h1 class="shop-topic">SHOP</h1>
             </div>
-            <div class="shop-btnResign" >
+            <div class="shop-btnResign">
                 <div class="bgdam1">
                     <div class="shop-btnResign-bg1"></div>
                 </div>
                 <div class="shop-btnResign-bgMiddle">
                     <h3 onclick="addShop()">Register your shop +</h3>
-                </div> 
+                </div>
                 <div class="bgdam2">
                     <div class="shop-btnResign-bg2"></div>
                 </div>
@@ -226,7 +232,7 @@
                 </div>
                 <div class="shop-inputForm-body">
                     <div class="shop-inputForm-displayAvatar">
-                        <img id="shop-review-avatar" src="images/shop/shopnoavatar.jpg" alt="" >
+                        <img id="shop-review-avatar" src="images/shop/shopnoavatar.jpg" alt="">
                     </div>
                     <div class="shop-inputForm-text">
                         <div class="shop-input">
@@ -236,7 +242,8 @@
                         </div>
                         <div class="shop-input">
                             <label for="shop-inputAvatar">Shop Avatar</label>
-                            <input type="text" id="shop-inputAvatar" class="shop-formControl" placeholder="https://i.pravatar.cc/150?img=100" onkeyup="changeShopAvatar()">
+                            <input type="text" id="shop-inputAvatar" class="shop-formControl"
+                                placeholder="https://i.pravatar.cc/150?img=100" onkeyup="changeShopAvatar()">
                         </div>
                         <div class="shop-input">
                             <label for="shop-inputLink">Shop Link</label>
@@ -265,7 +272,7 @@
         </div>
         <p class="text-footer"> Powered by CodeGym</p>
     </div>
-    
+
     <script src="character.js"></script>
 </body>
 
